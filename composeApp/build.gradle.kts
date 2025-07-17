@@ -69,6 +69,10 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtimeCompose)
+            implementation(libs.coroutines.core)
+            implementation(libs.koin.core)
+            implementation(libs.sqldelight.runtime)
+            implementation(libs.kmpnotifier)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

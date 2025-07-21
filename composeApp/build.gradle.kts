@@ -73,6 +73,9 @@ kotlin {
             implementation(libs.koin.core)
             implementation(libs.sqldelight.runtime)
             implementation(libs.kmpnotifier)
+            implementation(libs.koin.compose)
+            implementation(libs.koin.composeVM)
+            implementation(libs.koin.androidx.compose)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

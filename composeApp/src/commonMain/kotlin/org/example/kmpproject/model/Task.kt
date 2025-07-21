@@ -1,8 +1,12 @@
 package org.example.kmpproject.model
 
+import kotlin.time.ExperimentalTime
+import kotlin.time.Instant
+
+@OptIn(ExperimentalTime::class)
 data class Task(
-    val id: Long = 0L,
+    val id: String,
     val name: String,
     val isDoneToday: Boolean = false,
-    val createdAt: Long = 1
+    val createdAt: Instant
 )

@@ -42,10 +42,21 @@ import org.koin.compose.viewmodel.koinViewModel
 fun HomeScreen() {
     val viewModel: HomeViewModel = koinViewModel()
     var addTask by remember { mutableStateOf(false) }
+    val deleteTask = remember { mutableStateOf<Task?>(null) }
     val taskState by viewModel.task.collectAsStateWithLifecycle()
 
     LaunchedEffect(Unit) {
         viewModel.getTasks()
+    }
+
+    if (deleteTask.value != null) {
+        ConfirmDeleteDialog(
+            onConfirm = {
+                viewModel.deleteTask(deleteTask.value!!)
+                deleteTask.value = null
+            },
+            onDismiss = { deleteTask.value = null }
+        )
     }
 
     if (addTask) {
@@ -123,7 +134,7 @@ fun HomeScreen() {
                                             task = task,
                                             onCheckedChange = { task, checked -> },
                                             onEdit = { task -> },
-                                            onDelete = { task -> viewModel.deleteTask(task) })
+                                            onDelete = { task -> deleteTask.value = task })
                                         HorizontalDivider()
                                     }
                                 }
